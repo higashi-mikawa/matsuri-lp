@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祭 (MATSURI) 交流会 - ソフトバレーボール トリムの部</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           1. 基本設定・リセット（案3：ポップ＆元気カラー）
+           ========================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'M PLUS 1p', sans-serif;
+            background-color: #fff9f0;
+            color: #333333;
+            line-height: 1.6;
+            padding-bottom: 70px;
+        }
+
+        @media (min-width: 769px) {
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.15);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           2. ヒーローセクション（Googleドライブの透過PNGを配置）
+           ========================================== */
+        .hero {
+            background: linear-gradient(135deg, #ff3300 0%, #ff8800 50%, #ffcc00 100%);
+            color: #ffffff;
+            position: relative;
+            padding: 20px 20px 30px;
+            overflow: hidden;
+            border-bottom: 6px solid #ff3300;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.3) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-layout {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            align-items: center;
+        }
+
+        @media (min-width: 769px) {
+            .hero-layout {
+                grid-template-columns: 180px 1fr 180px;
+            }
+        }
+
+        /* 左右の選手画像用の表示スタイル */
+        .player-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .player-img {
+            max-width: 140px;
+            height: auto;
+            object-fit: contain;
+            /* 透過画像の背景で白フチ＆影をつけて見やすくする効果 */
+            filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25)) drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.8));
+        }
+
+        @media (min-width: 769px) {
+            .player-img {
+                max-width: 180px;
+            }
+        }
+
+        .hero-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .badge-ribbon {
+            background: #ffffff;
+            color: #ff3300;
+            font-weight: 900;
+            font-size: 1.1rem;
+            padding: 6px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            letter-spacing: 1px;
+            border: 3px solid #ffcc00;
+        }
+
+        .hero-title-svg {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+        }
+
+        .catchphrase {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1px 2px 3px rgba(204, 0, 0, 0.6);
+            letter-spacing: 2px;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 4px 16px;
+            border-radius: 20px;
+        }
+
+        /* 日時・場所・巨大CTAボタンエリア */
+        .hero-bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+            align-items: center;
+        }
+
+        @media (min-width: 769px) {
+            .hero-bottom-grid {
+                grid-template-columns: 1fr auto;
+            }
+        }
+
+        .date-location-box {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 15px 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .date-display {
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .date-display .highlight-num {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ff3300;
+            line-height: 1;
+        }
+
+        .location-display {
+            margin-top: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .location-display i {
+            color: #ff8800;
+        }
+
+        /* 案3風の丸型デカボタン */
+        .hero-circle-cta {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #ffeb3b 0%, #ff9900 100%);
+            color: #d80000;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            margin: 0 auto;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .hero-circle-cta:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-circle-cta .cta-text {
+            font-size: 1.3rem;
+            font-weight: 900;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .hero-circle-cta i {
+            font-size: 1.2rem;
+            margin-top: 4px;
+            background: #d80000;
+            color: #fff;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==========================================
+           3. セクション共通デザイン
+           ========================================== */
+        .section {
+            padding: 25px 20px;
+            border-bottom: 2px dashed #ffe0b2;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #ff3300;
+            margin-bottom: 15px;
+        }
+
+        .section-title-icon {
+            background-color: #ff8800;
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================
+           4. 開催概要 (案3の2カラムカード風)
+           ========================================== */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 769px) {
+            .overview-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .overview-card {
+            background: #fff8f0;
+            border: 1px solid #ffe0b2;
+            border-radius: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .overview-card .icon-badge {
+            background-color: #ff3300;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .overview-card .card-content label {
+            font-weight: 700;
+            color: #ff3300;
+            font-size: 0.85rem;
+            display: block;
+        }
+
+        .overview-card .card-content div {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .tag-first-come {
+            background-color: #ff8800;
+            color: #ffffff;
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 6px;
+        }
+
+        /* ==========================================
+           5. 申込み & 締切
+           ========================================== */
+        .apply-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 769px) {
+            .apply-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .btn-apply-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(180deg, #ff8800 0%, #ff3300 100%);
+            color: #ffffff;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: 900;
+            box-shadow: 0 5px 0 #cc2600;
+            margin-top: 10px;
+        }
+
+        .deadline-card {
+            border: 2px solid #ffcc00;
+            border-radius: 12px;
+            padding: 15px;
+            background-color: #fffdf0;
+            text-align: center;
+        }
+
+        .deadline-date {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+
+        .deadline-date .highlight-num {
+            font-size: 2rem;
+            color: #ff3300;
+            font-weight: 900;
+        }
+
+        .warning-banner {
+            background-color: #ff3300;
+            color: #ffffff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* ==========================================
+           6. フッター
+           ========================================== */
+        .footer {
+            background: linear-gradient(180deg, #ff3300 0%, #cc0000 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px 20px;
+        }
+
+        .btn-footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #ffeb3b;
+            color: #d80000;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 0 #b32400;
+        }
+
+        /* スマホ追従ボタン */
+        .sticky-footer-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 12px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            border-top: 2px solid #ffcc00;
+        }
+
+        @media (min-width: 769px) {
+            .sticky-footer-cta { display: none; }
+        }
+
+        .sticky-btn-inner {
+            background: linear-gradient(180deg, #ff9900 0%, #ff3300 100%);
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- 1. ヒーローセクション -->
+        <header class="hero">
+            <div class="hero-layout">
+                
+                <!-- 左側：Google Driveの左選手画像 -->
+                <div class="player-wrapper">
+                    <img src="画像_イラスト_選手_左_透過.png" alt="ソフトバレー選手（左）" class="player-img">
+                </div>
+
+                <!-- 中央：タイトル＆キャッチコピー -->
+                <div class="hero-center">
+                    <div class="badge-ribbon">ソフトバレーボール トリムの部</div>
+                    
+                    <svg class="hero-title-svg" viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+                        <text x="50" y="90" font-family="'M PLUS 1p', sans-serif" font-weight="900" font-size="80" fill="#ffffff" filter="drop-shadow(3px 4px 0px #cc0000)">祭</text>
+                        <text x="160" y="55" font-family="'Noto Sans JP', sans-serif" font-weight="800" font-size="24" fill="#ffffff">（MATSURI）</text>
+                        <text x="160" y="100" font-family="'M PLUS 1p', sans-serif" font-weight="900" font-size="42" fill="#ffeb3b" filter="drop-shadow(2px 3px 0px #cc0000)">交流会</text>
+                    </svg>
+
+                    <div class="catchphrase">みんなでつなぐ！笑顔の輪！</div>
+                </div>
+
+                <!-- 右側：Google Driveの右選手画像 -->
+                <div class="player-wrapper">
+                    <img src="画像_イラスト_選手_右_透過.png" alt="ソフトバレー選手（右）" class="player-img">
+                </div>
+
+            </div>
+
+            <!-- 下部：日時・場所 & 丸型CTAボタン -->
+            <div class="hero-bottom-grid">
+                <div class="date-location-box">
+                    <div class="date-display">
+                        <span>2027年</span>
+                        <span class="highlight-num">2</span>月<span class="highlight-num">14</span>日（日）
+                        <span style="font-size:0.9rem; background:#eee; padding:2px 8px; border-radius:10px; margin-left:6px;">受付 9:00〜</span>
+                    </div>
+                    <div class="location-display">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>岡崎中央総合公園 総合体育館（武道館）</span>
+                    </div>
+                </div>
+
+                <a href="#apply" class="hero-circle-cta">
+                    <span class="cta-text">今すぐ<br>申し込む</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- 2. 開催概要 -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-title-icon"><i class="fa-solid fa-clipboard-list"></i></span>
+                開催概要
+            </h2>
+
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="icon-badge"><i class="fa-solid fa-bullseye"></i></div>
+                    <div class="card-content">
+                        <label>目的</label>
+                        <div>ソフトバレーボールを通じた交流・親睦と、競技力の向上を目指します。</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="icon-badge"><i class="fa-solid fa-yen-sign"></i></div>
+                    <div class="card-content">
+                        <label>参加料</label>
+                        <div>1チーム 2,000円（当日受付にてお支払い）</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="icon-badge"><i class="fa-solid fa-calendar"></i></div>
+                    <div class="card-content">
+                        <label>日時</label>
+                        <div>2027年2月14日（日） 受付 9:00〜</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="icon-badge"><i class="fa-solid fa-volleyball"></i></div>
+                    <div class="card-content">
+                        <label>試合球</label>
+                        <div>主催者指定球（ミカサ製ソフトバレーボール）</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="icon-badge"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="card-content">
+                        <label>会場</label>
+                        <div>岡崎中央総合公園総合体育館（武道館）</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="icon-badge"><i class="fa-solid fa-sitemap"></i></div>
+                    <div class="card-content">
+                        <label>競技方法</label>
+                        <div>予選リーグ後、決勝トーナメント</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="icon-badge"><i class="fa-solid fa-users"></i></div>
+                    <div class="card-content">
+                        <label>チーム数</label>
+                        <div>32チーム限定 <span class="tag-first-come">先着順</span></div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="icon-badge"><i class="fa-solid fa-trophy"></i></div>
+                    <div class="card-content">
+                        <label>表彰</label>
+                        <div>優勝・準優勝・第3位（予定）</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 申込み & 締切 -->
+        <section class="section" id="apply">
+            <div class="apply-grid">
+                <div>
+                    <h2 class="section-title">
+                        <span class="section-title-icon"><i class="fa-solid fa-pen-line"></i></span>
+                        申込み
+                    </h2>
+                    <a href="#" class="btn-apply-large">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>申込みフォームへ</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </div>
+
+                <div class="deadline-card">
+                    <div style="font-size:0.85rem; font-weight:700; color:#ff3300;">
+                        <i class="fa-solid fa-calendar-xmark"></i> 申込締切
+                    </div>
+                    <div class="deadline-date">
+                        2027年 <span class="highlight-num">1</span>月 <span class="highlight-num">15</span>日（金）
+                    </div>
+                    <div class="warning-banner">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>先着32チーム到達で早期締切あり！</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. フッター -->
+        <footer class="footer">
+            <div style="font-size:1.1rem; font-weight:700; margin-bottom:12px;">
+                愛知県ソフトバレーボール連盟 東三河支部
+            </div>
+            
+            <a href="#" class="btn-footer-link">
+                <span>親サイト（東三河支部ホームページ）へ</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <div style="font-size:0.75rem; opacity:0.8;">
+                © 2027 Aichi Soft Volleyball Federation Higashi-Mikawa Branch.
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- 5. スマホ追従ボタン -->
+    <div class="sticky-footer-cta">
+        <a href="#apply" class="sticky-btn-inner">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>今すぐ申し込む（フォームへ）</span>
+        </a>
+    </div>
+
+</body>
+</html>

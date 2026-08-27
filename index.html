@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祭 (MATSURI) 交流会 - LPデザイン案一覧</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f5f7;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #111;
+        }
+        p {
+            font-size: 0.9rem;
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .btn-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .plan-btn {
+            display: block;
+            padding: 16px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .plan-btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* 案1：赤グラデーション */
+        .plan1 { 
+            background: linear-gradient(135deg, #dc2626, #ef4444); 
+        }
+        
+        /* 案2：青グラデーション */
+        .plan2 { 
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6); 
+        }
+        
+        /* 案3：オレンジグラデーション */
+        .plan3 { 
+            background: linear-gradient(135deg, #ea580c, #f97316); 
+        }
+        
+        .plan-desc {
+            font-size: 0.8rem;
+            font-weight: normal;
+            display: block;
+            margin-top: 4px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>祭(MATSURI)交流会<br>LPデザイン確認</h1>
+        <p>確認したいデザイン案を選択してください。</p>
+
+        <div class="btn-list">
+            <a href="plan1.html" class="plan-btn plan1">
+                【案1】プラン1
+                <span class="plan-desc">熱気と情熱のあるレッドスタイル</span>
+            </a>
+
+            <a href="plan2.html" class="plan-btn plan2">
+                【案2】プラン2
+                <span class="plan-desc">爽やかで信頼感のあるブルースタイル</span>
+            </a>
+
+            <a href="plan3.html" class="plan-btn plan3">
+                【案3】プラン3
+                <span class="plan-desc">元気でポップなオレンジスタイル</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
